@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.codingpedia</groupId>
 	<artifactId>demo-rest-spring-jersey-tomcat-mybatis</artifactId>
@@ -10,9 +10,10 @@
 
 	<properties>
 		<spring.version>3.2.6.RELEASE</spring.version>
-		<jetty.version>9.0.7.v20131107</jetty.version> <!-- Adapt this to a version found on http://repo.maven.apache.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
+		<jetty.version>7.6.3.v20120416</jetty.version>
+		<!-- Adapt this to a version found on http://repo.maven.apache.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
 		<logback.version>1.1.1</logback.version>
- 		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>		
+		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>
 	</properties>
 
 	<repositories>
@@ -62,11 +63,11 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 			<exclusions>
- 			   <exclusion>
- 			      <groupId>commons-logging</groupId>
- 			      <artifactId>commons-logging</artifactId>
- 			   </exclusion>
- 			</exclusions>				
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -119,8 +120,8 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-client</artifactId>
-			<version>2.4.1</version>			
-		</dependency>				
+			<version>2.4.1</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
@@ -164,88 +165,33 @@
 			<artifactId>jersey-test-framework-provider-external</artifactId>
 			<version>2.5.1</version>
 		</dependency>
-		
-		<!-- LogBack dependencies --> 
+
+		<!-- LogBack dependencies -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
 		</dependency>
-		<dependency>                                    
-			<groupId>org.slf4j</groupId>                
-			<artifactId>jcl-over-slf4j</artifactId>     
-			<version>${jcloverslf4j.version}</version>  
-		</dependency>		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${jcloverslf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all-server</artifactId>
+			<version>${jetty.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>2.16</version>
-				<executions>
-					<execution>
-						<id>integration-test</id>
-						<goals>
-							<goal>integration-test</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>verify</id>
-						<goals>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.version}</version>
-				<configuration>
-					<jettyConfig>${project.basedir}/src/main/resources/config/jetty9.xml</jettyConfig>
-					<stopKey>STOP</stopKey>
-					<stopPort>9999</stopPort>
-					<stopWait>5</stopWait>
-					<scanIntervalSeconds>5</scanIntervalSeconds>
-					<scanTargets>
-						<scanTarget>${project.basedir}/src/main</scanTarget>
-						<scanTarget>${project.basedir}/src/test</scanTarget>
-					</scanTargets>
-					<contextXml>${project.basedir}/src/test/resources/jetty-context.xml</contextXml>
-					<webAppConfig>
-						<contextPath>/${project.artifactId}-${project.version}</contextPath>
-					</webAppConfig>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>mysql</groupId>
-						<artifactId>mysql-connector-java</artifactId>
-						<version>5.1.27</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<id>start-jetty</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>run-exploded</goal>
-						</goals>
-						<configuration>
-							<scanIntervalSeconds>0</scanIntervalSeconds>
-							<daemon>true</daemon>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-jetty</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>  

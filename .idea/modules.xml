@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/matters-rest-spring-jersey-tomcat-mybatis.iml" filepath="$PROJECT_DIR$/matters-rest-spring-jersey-tomcat-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo-rest-spring-jersey-tomcat-mybatis.iml" filepath="$PROJECT_DIR$/demo-rest-spring-jersey-tomcat-mybatis.iml" />
     </modules>
   </component>
 </project>

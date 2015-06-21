@@ -1,4 +1,4 @@
-package com.ellychou.todo.rest.service;
+package org.codingpedia.demo.rest.service;
 
 import org.apache.log4j.Logger;
 import org.eclipse.jetty.server.Server;
