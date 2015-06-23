@@ -41,8 +41,8 @@
 
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://codeashobby.com:3306/yzhou"/>
-		<property name="username" value="yzhou"/>
-		<property name="password" value="yzhou"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/rest_demo"/>
+		<property name="username" value="restspring"/>
+		<property name="password" value="Mama1301"/>
 	</bean>
 </beans>
