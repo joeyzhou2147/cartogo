@@ -1,11 +1,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="org.codingpedia.demo.rest.dao.PodcastDao">
+<mapper namespace="org.codingpedia.demo.rest.dao.UserDao">
 
-    <resultMap id="podcastMap" type="Podcast" >
-        <id column="id" property="id"  />
-        <result column="title" property="title" />
+    <resultMap id="UserMap" type="User" >
+        <id column="user_id" property="user_id"  />
+        <result column="email" property="email" />
         <result column="link_on_podcastpedia" property="linkOnPodcastpedia" />
         <result column="feed" property="feed" />
         <result column="insertion_date" property="insertionDate" />
@@ -18,7 +18,7 @@
 		INSERT 
 			INTO podcasts
 		SET 
-			title = #{title},
+			email = #{email},
 			link_on_podcastpedia = #{linkOnPodcastpedia},
 			feed = #{feed},
 			description = #{description}
@@ -27,8 +27,8 @@
   	<!-- ************** READ ************** -->
     <select id="getPodcasts" resultMap="podcastMap">
         SELECT
-            id,
-            title,
+            user_id,
+            email,
             link_on_podcastpedia,
             feed,
             description,
@@ -37,10 +37,10 @@
             podcasts 	            	
     </select>
     
-    <select id="getPodcastById" resultMap="podcastMap" parameterType="Long">
+    <select id="getUserById" resultMap="podcastMap" parameterType="Long">
         SELECT
-            id,
-            title,
+            user_id,
+            email,
             link_on_podcastpedia,            
             feed,            
             description,
@@ -48,13 +48,13 @@
         FROM
             podcasts
         WHERE
-        	id=#{value};              	            	
+        	user_id=#{value};
     </select>
 
     <select id="getPodcastByFeed" resultMap="podcastMap" parameterType="String">
         SELECT
-            id,
-            title,
+            user_id,
+            email,
             link_on_podcastpedia,            
             feed,
             description,
@@ -70,9 +70,9 @@
 		UPDATE 
 			podcasts
 		SET 
-			id = #{id}
-			<if test="title != null">
-				,title = #{title}
+			user_id = #{user_id}
+			<if test="email != null">
+				,email = #{email}
 			</if>
 			<if test="linkOnPodcastpedia != null">
 				,link_on_podcastpedia = #{linkOnPodcastpedia}
@@ -84,12 +84,12 @@
 				,description = #{description}
 			</if>			
 		WHERE
-			id = #{id}
+			user_id = #{user_id}
  	</update>   	
  	
  	<!-- ************** DELETE ************** -->
 	<delete id="deletePodcastById" parameterType="Long">
-		DELETE FROM podcasts WHERE id = #{value}
+		DELETE FROM podcasts WHERE user_id = #{value}
 	</delete>
 	
  	<!-- DELETE all -->

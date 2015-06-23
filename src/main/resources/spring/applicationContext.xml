@@ -25,9 +25,9 @@
     </bean>  
     	
 	<!-- =============== MyBATIS beans configuration ================== -->
-	<bean id="podcastDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
 	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>    
-	   <property name="mapperInterface" value="org.codingpedia.demo.rest.dao.PodcastDao" />
+	   <property name="mapperInterface" value="org.codingpedia.demo.rest.dao.UserDao" />
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -35,14 +35,14 @@
 	    <property name="configLocation" value="classpath:config/mybatisV3.xml"/>
 	</bean>
 	
-    <bean id="podcastRestService" class="org.codingpedia.demo.rest.service.PodcastRestService" >
-    	<property name="podcastDao" ref="podcastDao"/>
+    <bean id="podcastRestService" class="org.codingpedia.demo.rest.service.UserRestService" >
+    	<property name="userDao" ref="userDao"/>
     </bean>
 
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/rest_demo"/>
-		<property name="username" value="restspring"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/cartogo"/>
+		<property name="username" value="root"/>
 		<property name="password" value="Mama1301"/>
 	</bean>
 </beans>
