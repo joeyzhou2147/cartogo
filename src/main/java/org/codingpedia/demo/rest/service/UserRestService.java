@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  */
 @Component
-@Path("/podcasts")
+@Path("/users")
 public class UserRestService {
 	
 	@Autowired
@@ -179,20 +179,20 @@ public class UserRestService {
 	@DELETE @Path("{id}")
 	@Produces({MediaType.TEXT_HTML})
 	@Transactional
-	public Response deletePodcastById(@PathParam("id") Long id) {
-		if(UserDao.deleteUserById(id) == 1){
+	public Response deleteUserById(@PathParam("user_id") Long user_id) {
+		if(UserDao.deleteUserById(user_id) == 1){
 			return Response.status(204).build();
 		} else {
-			return Response.status(404).entity("User with the id " + id + " is not present in the database").build();
+			return Response.status(404).entity("User with the id " + user_id + " is not present in the database").build();
 		}
 	}
 	
 	@DELETE
 	@Produces({MediaType.TEXT_HTML})
 	@Transactional
-	public Response deletePodcasts() {
+	public Response deleteUsers() {
 		UserDao.deleteUsers();
-		return Response.status(200).entity("All podcasts have been successfully removed").build();
+		return Response.status(200).entity("All users have been successfully removed").build();
 	}	
 	
 	public void setUserDao(UserDao userDao) {

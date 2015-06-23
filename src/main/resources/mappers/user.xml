@@ -1,0 +1,100 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="org.codingpedia.demo.rest.dao.UserDao">
+
+    <resultMap id="UserMap" type="User" >
+        <id column="user_id" property="user_id"  />
+        <result column="email" property="email" />
+        <result column="link_on_podcastpedia" property="linkOnPodcastpedia" />
+        <result column="feed" property="feed" />
+        <result column="insertion_date" property="insertionDate" />
+        <result column="description" property="description" />
+    </resultMap>   
+ 
+    
+ 	<!-- ************** CREATE ************** -->
+ 	<insert id="createPodcast" parameterType="Podcast" useGeneratedKeys="true">
+		INSERT 
+			INTO podcasts
+		SET 
+			email = #{email},
+			link_on_podcastpedia = #{linkOnPodcastpedia},
+			feed = #{feed},
+			description = #{description}
+ 	</insert>   
+ 	 
+  	<!-- ************** READ ************** -->
+    <select id="getPodcasts" resultMap="podcastMap">
+        SELECT
+            user_id,
+            email,
+            link_on_podcastpedia,
+            feed,
+            description,
+            insertion_date
+        FROM
+            podcasts 	            	
+    </select>
+    
+    <select id="getUserById" resultMap="podcastMap" parameterType="Long">
+        SELECT
+            user_id,
+            email,
+            link_on_podcastpedia,            
+            feed,            
+            description,
+            insertion_date
+        FROM
+            podcasts
+        WHERE
+        	user_id=#{value};
+    </select>
+
+    <select id="getPodcastByFeed" resultMap="podcastMap" parameterType="String">
+        SELECT
+            user_id,
+            email,
+            link_on_podcastpedia,            
+            feed,
+            description,
+            insertion_date
+        FROM
+            podcasts
+        WHERE
+        	feed=#{value};              	            	
+    </select>
+     	
+ 	<!-- ************** UPDATE ************** -->
+ 	<update id="updatePodcast" parameterType="Podcast">
+		UPDATE 
+			podcasts
+		SET 
+			user_id = #{user_id}
+			<if test="email != null">
+				,email = #{email}
+			</if>
+			<if test="linkOnPodcastpedia != null">
+				,link_on_podcastpedia = #{linkOnPodcastpedia}
+			</if>
+			<if test="feed != null">
+				,feed = #{feed}
+			</if>
+			<if test="description != null">
+				,description = #{description}
+			</if>			
+		WHERE
+			user_id = #{user_id}
+ 	</update>   	
+ 	
+ 	<!-- ************** DELETE ************** -->
+	<delete id="deletePodcastById" parameterType="Long">
+		DELETE FROM podcasts WHERE user_id = #{value}
+	</delete>
+	
+ 	<!-- DELETE all -->
+	<delete id="deletePodcasts">
+		TRUNCATE TABLE podcasts
+	</delete>	
+	 	    
+</mapper>

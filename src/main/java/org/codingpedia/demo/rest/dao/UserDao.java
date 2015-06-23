@@ -14,7 +14,7 @@ public interface UserDao {
 	public List<User> getUsers();
 
 	/**
-	 * Returns a podcast given its id
+	 * Returns a user given its id
 	 * 
 	 * @param user_id
 	 * @return
