@@ -63,12 +63,13 @@ public class User implements Serializable {
     ---------------------------------------------------------------------- */
 
 	public User(){}
-/*
 
-	public User(String email,String first_name,String last_name, String detail_address, String city,
-				String state,String user_name,String password,String salt) {
+	public User(Long user_id,String email,int phone_num,String first_name,String last_name, String detail_address, String city,
+				String state,String user_name,String password,String salt,Date register_date,Date last_login) {
 
+		this.user_id = user_id;
 		this.email = email;
+		this.phone_num = phone_num;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.detail_address = detail_address;
@@ -77,8 +78,9 @@ public class User implements Serializable {
 		this.user_name = user_name;
 		this.password = password;
 		this.salt = salt;
+		this.register_date = register_date;
+		this.last_login = last_login;
 	}
-*/
 
 
 	/* 3 - setting

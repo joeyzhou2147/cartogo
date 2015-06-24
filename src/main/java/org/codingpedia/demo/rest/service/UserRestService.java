@@ -1,5 +1,6 @@
 package org.codingpedia.demo.rest.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -65,6 +66,8 @@ public class UserRestService {
 	 * @param user_name
 	 * @param password
 	 * @param salt
+	 * @param register_date
+	 * @param last_login
 	 * @return
 	 */
 	@POST
@@ -72,6 +75,8 @@ public class UserRestService {
 	@Produces({MediaType.TEXT_HTML})
 	@Transactional
 	public Response createUserFromForm(
+			@FormParam("user_id") Long user_id,
+			@FormParam("phone_num") int phone_num,
 			@FormParam("email") String email,
 			@FormParam("first_name") String first_name,
 			@FormParam("last_name") String last_name,
@@ -80,10 +85,13 @@ public class UserRestService {
 			@FormParam("state") String state,
 			@FormParam("user_name") String user_name,
 			@FormParam("password") String password,
-			@FormParam("salt") String salt
+			@FormParam("salt") String salt,
+			@FormParam("register_date") Date register_date,
+			@FormParam("last_login") Date last_login
 	) {
-		User user = new User(email, first_name, last_name,  detail_address,  city,
-				 state, user_name, password, salt);
+		// declared in the construction of entity
+		User user = new User(user_id, email, phone_num, first_name, last_name, detail_address, city,
+				state, user_name, password, salt, register_date, last_login);
 		UserDao.createUser(user);
 
 		return Response.status(201).entity("A new user/resource has been created").build();
