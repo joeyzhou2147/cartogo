@@ -6,95 +6,141 @@
     <resultMap id="UserMap" type="User" >
         <id column="user_id" property="user_id"  />
         <result column="email" property="email" />
-        <result column="link_on_podcastpedia" property="linkOnPodcastpedia" />
-        <result column="feed" property="feed" />
-        <result column="insertion_date" property="insertionDate" />
-        <result column="description" property="description" />
+        <result column="first_name" property="first_name" />
+        <result column="last_name" property="last_name" />
+        <result column="phone_num" property="phone_num" />
+        <result column="detail_address" property="detail_address" />
+        <result column="city" property="city" />
+        <result column="state" property="state" />
+        <result column="user_name" property="user_name" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="register_date" property="register_date" />
+        <result column="last_login" property="last_login" />
     </resultMap>   
  
     
  	<!-- ************** CREATE ************** -->
- 	<insert id="createPodcast" parameterType="Podcast" useGeneratedKeys="true">
+ 	<insert id="createUser" parameterType="User" useGeneratedKeys="true">
 		INSERT 
-			INTO podcasts
+			INTO users
 		SET 
 			email = #{email},
-			link_on_podcastpedia = #{linkOnPodcastpedia},
-			feed = #{feed},
-			description = #{description}
+			first_name = #{first_name},
+			last_name = #{last_name},
+			phone_num = #{phone_num},
+			detail_address = #{detail_address},
+			city = #{city},
+			state = #{state},
+			user_name = #{user_name},
+			password = #{password},
+			salt = #{salt}
  	</insert>   
  	 
   	<!-- ************** READ ************** -->
-    <select id="getPodcasts" resultMap="podcastMap">
+    <select id="getUsers" resultMap="UserMap">
         SELECT
             user_id,
-            email,
-            link_on_podcastpedia,
-            feed,
-            description,
-            insertion_date
+			email,
+			first_name,
+			last_name,
+			phone_num,
+			detail_address,
+			city,
+			state,
+			user_name,
+			password,
+			salt
         FROM
-            podcasts 	            	
+            users
     </select>
     
-    <select id="getUserById" resultMap="podcastMap" parameterType="Long">
+    <select id="getUserById" resultMap="UserMap" parameterType="Long">
         SELECT
             user_id,
-            email,
-            link_on_podcastpedia,            
-            feed,            
-            description,
-            insertion_date
+			email,
+			first_name,
+			last_name,
+			phone_num,
+			detail_address,
+			city,
+			state,
+			user_name,
+			password,
+			salt
         FROM
-            podcasts
+            users
         WHERE
         	user_id=#{value};
     </select>
 
-    <select id="getPodcastByFeed" resultMap="podcastMap" parameterType="String">
+    <select id="getUserByEmail" resultMap="UserMap" parameterType="String">
         SELECT
             user_id,
-            email,
-            link_on_podcastpedia,            
-            feed,
-            description,
-            insertion_date
+			email,
+			first_name,
+			last_name,
+			phone_num,
+			detail_address,
+			city,
+			state,
+			user_name,
+			password,
+			salt
         FROM
             podcasts
         WHERE
-        	feed=#{value};              	            	
+        	email=#{value};
     </select>
      	
  	<!-- ************** UPDATE ************** -->
- 	<update id="updatePodcast" parameterType="Podcast">
+ 	<update id="updateUser" parameterType="User">
 		UPDATE 
-			podcasts
+			users
 		SET 
 			user_id = #{user_id}
-			<if test="email != null">
-				,email = #{email}
-			</if>
-			<if test="linkOnPodcastpedia != null">
-				,link_on_podcastpedia = #{linkOnPodcastpedia}
-			</if>
-			<if test="feed != null">
-				,feed = #{feed}
-			</if>
-			<if test="description != null">
-				,description = #{description}
-			</if>			
-		WHERE
-			user_id = #{user_id}
- 	</update>   	
- 	
- 	<!-- ************** DELETE ************** -->
-	<delete id="deletePodcastById" parameterType="Long">
-		DELETE FROM podcasts WHERE user_id = #{value}
+        <if test="email != null">
+            ,email = #{email}
+        </if>
+        <if test="first_name != null">
+            ,first_name = #{first_name}
+        </if>
+        <if test="last_name != null">
+            ,last_name = #{last_name}
+        </if>
+        <if test="phone_num != null">
+            ,phone_num = #{phone_num}
+        </if>
+        <if test="detail_address != null">
+            ,detail_address = #{detail_address}
+        </if>
+        <if test="city != null">
+            ,city = #{city}
+        </if>
+        <if test="state != null">
+            ,state = #{state}
+        </if>
+        <if test="user_name != null">
+            ,user_name = #{user_name}
+        </if>
+        <if test="password != null">
+            ,password = #{password}
+        </if>
+        <if test="salt != null">
+            ,salt = #{salt}
+        </if>
+        WHERE
+        user_id = #{user_id}
+    </update>
+
+    <!-- ************** DELETE ************** -->
+	<delete id="deleteUserById" parameterType="Long">
+		DELETE FROM users WHERE user_id = #{value}
 	</delete>
 	
  	<!-- DELETE all -->
-	<delete id="deletePodcasts">
-		TRUNCATE TABLE podcasts
+	<delete id="deleteUsers">
+		TRUNCATE TABLE users
 	</delete>	
 	 	    
 </mapper>
