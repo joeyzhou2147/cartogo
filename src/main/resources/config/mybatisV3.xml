@@ -5,9 +5,9 @@
  
 <configuration>
     <typeAliases>
-        <typeAlias type="org.codingpedia.demo.rest.entities.User" alias="Podcast"/>
+        <typeAlias type="org.codingpedia.demo.rest.entities.User" alias="User"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mappers/podcast.xml" />
+        <mapper resource="mappers/user.xml" />
     </mappers>
 </configuration>
