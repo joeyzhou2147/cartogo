@@ -63,6 +63,7 @@ public class User implements Serializable {
     ---------------------------------------------------------------------- */
 
 	public User(){}
+/*
 
 	public User(String email,String first_name,String last_name, String detail_address, String city,
 				String state,String user_name,String password,String salt) {
@@ -77,6 +78,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.salt = salt;
 	}
+*/
 
 
 	/* 3 - setting

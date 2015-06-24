@@ -58,16 +58,18 @@
     <select id="getUserById" resultMap="UserMap" parameterType="Long">
         SELECT
             user_id,
+			phone_num,
 			email,
 			first_name,
 			last_name,
-			phone_num,
 			detail_address,
 			city,
 			state,
 			user_name,
 			password,
-			salt
+			salt,
+			register_date,
+			last_login
         FROM
             users
         WHERE
