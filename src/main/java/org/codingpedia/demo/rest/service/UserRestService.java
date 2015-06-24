@@ -118,14 +118,14 @@ public class UserRestService {
 		return UserDao.getUsers();
 	}
 		
-	@GET @Path("{id}")
+	@GET @Path("{user_id}")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response findById(@PathParam("id") Long id) {		
-		User userById = UserDao.getUserById(id);
+	public Response findById(@PathParam("user_id") Long user_id) {
+		User userById = UserDao.getUserById(user_id);
 		if(userById != null) {
 			return Response.status(200).entity(userById).build();
 		} else {
-			return Response.status(404).entity("The podcast with the id " + id + " does not exist").build();
+			return Response.status(404).entity("The user with the id " + user_id + " does not exist").build();
 		}
 	}
 
@@ -176,7 +176,7 @@ public class UserRestService {
 	}	
 	
 	/************************************ DELETE ************************************/
-	@DELETE @Path("{id}")
+	@DELETE @Path("{user_id}")
 	@Produces({MediaType.TEXT_HTML})
 	@Transactional
 	public Response deleteUserById(@PathParam("user_id") Long user_id) {
