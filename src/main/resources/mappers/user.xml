@@ -90,7 +90,7 @@
 			password,
 			salt
         FROM
-            podcasts
+            users
         WHERE
         	email=#{value};
     </select>

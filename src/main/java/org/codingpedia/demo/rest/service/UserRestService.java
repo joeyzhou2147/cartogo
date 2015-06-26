@@ -140,10 +140,10 @@ public class UserRestService {
 	
 	/************************************ UPDATE ************************************/
 	/**
-	 * Updates the attributes of the podcast received via JSON for the given @param id
+	 * Updates the attributes of the user received via JSON for the given @param id
 	 * 
-	 * If the podcast does not exist yet in the database (verified by <strong>id</strong>) then
-	 * the application will try to create a new podcast resource in the db
+	 * If the user does not exist yet in the database (verified by <strong>id</strong>) then
+	 * the application will try to create a new user resource in the db
 	 * 
 	 * @param user_id
 	 * @param user
