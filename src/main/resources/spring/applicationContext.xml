@@ -40,7 +40,7 @@
     </bean>
 
 
-	<!--database setting-->
+	<!--database setting   -->
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/cartogo"/>
